@@ -6,13 +6,16 @@ let mainWindow: Electron.BrowserWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    height: 600,
+    height: 800,
     width: 800,
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, "../index.html"));
+  //mainWindow.loadFile(path.join(__dirname, "./index.html"));
 
+  const fileName = `file://${path.join(__dirname, "./index.html")}`
+  console.log(fileName);
+  mainWindow.loadURL(fileName)
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 

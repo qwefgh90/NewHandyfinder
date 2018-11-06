@@ -16,9 +16,10 @@ function createWindow() {
   const fileName = `file://${path.join(__dirname, "./index.html")}`
   console.log(fileName);
   mainWindow.loadURL(fileName)
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-
+  if(process.argv.length == 2){
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools();
+  }
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
     // Dereference the window object, usually you would store windows

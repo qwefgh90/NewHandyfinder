@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "sourceMap": true,
     "outDir": "tsout",
     "baseUrl": ".",
@@ -11,6 +11,6 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*", "test/test.js"
   ]
 }

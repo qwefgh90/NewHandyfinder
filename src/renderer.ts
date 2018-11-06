@@ -4,6 +4,7 @@
 import "./styles/main.css"
 import "./ui/frame"
 import { AppFrame } from "./ui/frame";
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const appName = "HandyFinder"
 
@@ -19,4 +20,3 @@ function testBtn() {
 }
 
 document.body.appendChild(new AppFrame());
-document.body.appendChild(testBtn());

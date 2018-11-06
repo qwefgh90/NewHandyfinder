@@ -1,48 +1,40 @@
-import { AppBody } from "./body"
+import { AppBody } from "./body";
 import "./frame.css";
+import { MockDiv } from "./mockdiv";
+import { getContainer, getRow } from "./bootHelper";
 
 const version = "0.1";
-
-function getRow(){
-    const row = document.createElement('div');
-    row.classList.add("row");        
-    return row;
-}
-
-function getContainer(){
-    const row = document.createElement('div');
-    row.classList.add("container");        
-    return row;
-}
-
-function getCol(postFix: string | number){
-    const row = document.createElement('div');
-    row.classList.add(`col-${postFix}`);        
-    return row;
-}
-
-export class AppFrame extends HTMLElement {
+/**
+ * Frame (comp)
+ * Top (comp)
+ * TopMenu (comp)
+ * -----
+ * Body (comp)
+ * -----
+ * Bottom (comp)
+ */
+export class AppFrame extends MockDiv {
     constructor() {
         super();
         //It consists of Header, Body, Bottom
-        this.appendChild(new AppHeader());
+        this.appendChild(new AppTop());
         this.appendChild(new AppBody());
         this.appendChild(new AppBottom());
     }
 }
 
-export class AppHeader extends HTMLElement {
+export class AppTop extends MockDiv {
     constructor() {
         super();
+        this.classList.add("app-header", "div")
         this.appendChild(this.init());
     }
     init(): HTMLElement {
         /**
-         * Grid
+         * Bootstrap Grid
          */
         const container = getContainer();
         const row = getRow();
-        const leftCol = getCol(6);
 
         /**
          * Title
@@ -54,10 +46,13 @@ export class AppHeader extends HTMLElement {
         /**
          * Menu
          */
-        const menu = new AppTopMenu();
-        menu.style.textAlign = "right";
-        menu.style.paddingRight = `5px`;
-        menu.classList.add(`col-6`);
+        const leftCol = document.createElement('div');
+        leftCol.classList.add(`col-6`);
+
+        const rightCol = new AppTopMenu();
+        rightCol.style.textAlign = "right";
+        rightCol.style.paddingRight = `5px`;
+        rightCol.classList.add(`col-6`);
 
         /**
          * Structure
@@ -65,7 +60,7 @@ export class AppHeader extends HTMLElement {
         (function construnct(){
             container.appendChild(row);
             row.appendChild(leftCol);
-            row.appendChild(menu);
+            row.appendChild(rightCol);
             leftCol.appendChild(title);
         })();
         return container;
@@ -82,6 +77,7 @@ export class AppTopMenu extends HTMLElement {
         this.classList.add("input-group");
 
         const input = document.createElement("input");
+        input.classList.add("form-control")
         input.placeholder = "검색";
         input.setAttribute("aria-label", "검색");
 
@@ -103,13 +99,13 @@ export class AppTopMenu extends HTMLElement {
 }
 
 
-export class AppBottom extends HTMLElement {
+export class AppBottom extends MockDiv {
     constructor() {
         super();
     }
 }
 
 customElements.define('my-frame', AppFrame);
-customElements.define('my-header', AppHeader);
+customElements.define('my-header', AppTop);
 customElements.define('my-top-menu', AppTopMenu);
 customElements.define('my-bottom', AppBottom);

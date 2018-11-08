@@ -44,5 +44,11 @@ module.exports = [
       entry: { renderer: './src/renderer.ts' },
       plugins: [new HtmlWebpackPlugin({title: 'Output Management'})]
     },
+    commonConfig),
+  Object.assign(
+    {
+      target: 'node',
+      entry: { serviceTest: './test/serviceTest.js' }
+    },
     commonConfig)
 ]

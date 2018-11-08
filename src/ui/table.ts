@@ -1,17 +1,25 @@
 import { getContainer, getRow } from "./bootHelper";
+import "bootstrap/dist/css/bootstrap.min.css"
 
-export class ResultTable extends HTMLElement { 
+/**
+ * title
+ * ------
+ * 
+ */
+export class AppTable extends HTMLElement {
     constructor(){
         super(); 
 
     }
-}
+    
+    init(){
+        
+    }
 
-export class ResultRow extends HTMLElement {
-    constructor(){
-        super(); 
+    build(){
+
     }
 }
 
-customElements.define('my-result-table', ResultTable);
-customElements.define('my-result-row', ResultRow);
+
+customElements.define('my-result-table', AppTable);

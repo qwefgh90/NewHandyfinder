@@ -1,3 +1,5 @@
+//const { Assembler } = require('../src/service/all')
+//const { InputSearchService } = require('./all')
 const Application = require('spectron').Application
 const assert = require('assert')
 const electronPath = require('electron') // Require Electron from the binaries included in node_modules.
@@ -47,11 +49,12 @@ describe('Application launch', function () {
   })
 })
 
-
 describe('Application UI', function () {
   this.timeout(100000)
 
   beforeEach(function () {
+    const htmlList = ['<span style="color:red">red word</span><h3>Header 3</h3>', '<span style="color:red">red word</span><h3>Header 3</h3>', '<span style="color:red">red word</span><h3>Header 3</h3>']
+    //Assembler.assemble(new InputSearchService(htmlList));
     this.app = new Application({
       path: electronPath,
 
@@ -79,4 +82,9 @@ describe('Application UI', function () {
       assert.notEqual(v.indexOf(title), -1, "A title is incorrect.");
     });
   });
+  
+  it('render html content to contentBox', function(){
+    
+  });
+
 })

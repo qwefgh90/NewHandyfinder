@@ -4,3 +4,10 @@ export class MockDiv extends HTMLElement {
         this.style.display = "block";
     }
 }
+
+export class MockRow extends HTMLElement {
+    constructor(){
+        super();
+        this.classList.add("row");
+    }
+}

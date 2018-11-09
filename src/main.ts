@@ -19,6 +19,7 @@ function createWindow() {
   if(process.argv.length == 2){
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
+    console.log(process.argv);
   }
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {

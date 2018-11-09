@@ -1,5 +1,4 @@
 import { SearchService, SearchServiceLocator } from "./searchService"
-
 export type LocatorInitialzeType = (_searchService: SearchService) => void
 
 /**
@@ -17,11 +16,12 @@ export class Locator implements SearchServiceLocator{
     
     private _searchService: SearchService;
 
-    public initialize: LocatorInitialzeType = (_searchService) => {
+    public initialize: LocatorInitialzeType = (_searchService = null) => {
         this._searchService = _searchService;
     }
 
     public searchService(): SearchService{
         return this._searchService;
     }
+
 }

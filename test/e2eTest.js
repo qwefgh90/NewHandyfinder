@@ -1,5 +1,3 @@
-//const { Assembler } = require('../src/service/all')
-//const { InputSearchService } = require('./all')
 const Application = require('spectron').Application
 const assert = require('assert')
 const electronPath = require('electron') // Require Electron from the binaries included in node_modules.
@@ -83,7 +81,7 @@ describe('Application UI', function () {
     });
   });
   
-  it('render html content to contentBox', function(){
+  it('render html content to contentBox when searching', function(){
     
   });
 

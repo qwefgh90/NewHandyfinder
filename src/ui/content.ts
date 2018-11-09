@@ -2,6 +2,7 @@ import { stat } from 'fs'
 import * as Path from 'path'
 import { Content } from '../model/content'
 import "bootstrap/dist/css/bootstrap.min.css"
+import { Subject } from 'rxjs'
 
 export class AppContent extends HTMLElement{
     private top = document.createElement('div');

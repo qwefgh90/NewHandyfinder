@@ -25,11 +25,10 @@ export class AppFrame extends HTMLElement {
         this.container.classList.add("app-frame")
         this.appTop.classList.add("row");
         this.appBody.classList.add("row");
+        this.appBody.style.marginTop = '2em';
+        this.appBody.classList.add("corner-box");
         this.appBottom.classList.add("row");
         this.build();
-    }
-
-    rxjs(){
     }
 
     build(){

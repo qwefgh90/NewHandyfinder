@@ -12,25 +12,13 @@ import "bootstrap/dist/css/bootstrap.min.css"
 export class AppBody extends HTMLElement {
     constructor() {
         super();
+        this.build();
     }
 
     public readonly appTable = new AppTable();
 
     build(){
         this.appendChild(this.appTable);
-    }
-
-    checkBoxMenu(): HTMLElement {
-        const div = document.createElement("div");
-        div.style.textAlign = "right";
-        let c1 = <any>new Checkbox()
-        c1.accessKey = "";
-        c1.addEventListener("change", (ev) => {
-            let cb = <Checkbox>ev.target
-            console.log(`nv: ${cb.checked}`)
-        })
-        div.appendChild(c1);
-        return div;
     }
 }
 

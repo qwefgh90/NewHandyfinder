@@ -1,5 +1,6 @@
 import { Locator, LocatorInitialzeType } from "./locator"
 
-export class Assembler {
-    static assemble: LocatorInitialzeType = Locator.locator().initialize
+export interface Assembler {
+    //static assemble: LocatorInitialzeType = Locator.locator().initialize
+    assemble(): void
 }

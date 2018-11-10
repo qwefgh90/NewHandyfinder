@@ -1,5 +1,5 @@
 const { Assembler, Locator } = require('../src/service/all')
-const { ContentEchoSearchService } = require('./all')
+const { ServiceTestAssembler } = require('./all')
 const { Content } = require('../src/model/content')
 const os = require('os')
 const fs = require('fs')
@@ -15,13 +15,13 @@ describe('Locator', function () {
     function createTemp(){
       folder = fs.mkdtempSync(path.join(os.tmpdir(), 'foo-'))
       fpath = path.join(folder, "a.txt");
-      console.debug(fpath);
+      console.log(fpath);
       fs.writeFileSync(fpath, '')
       locator = Locator.locator();
     }
   
     beforeEach(function () {
-      Assembler.assemble(new ContentEchoSearchService());
+      new ServiceTestAssembler().assemble();
       createTemp();
     })
   
@@ -43,7 +43,7 @@ describe('Locator', function () {
       function createTemp(){
         folder = fs.mkdtempSync(path.join(os.tmpdir(), 'foo-'))
         fpath = path.join(folder, "a.txt");
-        console.debug(fpath);
+        console.log(fpath);
         fs.writeFileSync(fpath, '')
       }
     

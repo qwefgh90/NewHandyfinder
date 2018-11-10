@@ -7,12 +7,7 @@ export class Content {
     constructor(public path: string, public content: string){
         const result = Path.parse(path);
         this.name = result.name;
-        fs.stat(path, (err, s) =>{
-            if(err){
-                console.error(err);
-                throw err;
-            }
-            this.lastModified = s.mtime;
-        });
+        const s = fs.statSync(path)
+        this.lastModified = s.mtime;
     }
 }

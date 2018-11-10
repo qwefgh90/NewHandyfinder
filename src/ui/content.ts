@@ -15,10 +15,12 @@ export class AppContent extends HTMLElement{
     private lastModified = document.createElement('span');
     constructor(content: Content){
         super();
+        this.name.style.display = "inline-block"
+        this.name.style.marginRight = "0.5em"
         this.name.innerText = content.name;
         this.path.innerText = content.path;
         this.content.innerHTML = content.content;
-        this.lastModified.innerText = content.lastModified.toLocaleString();
+        this.lastModified.innerText = content.lastModified.toLocaleDateString();
         this.build();
     }
 
@@ -27,6 +29,9 @@ export class AppContent extends HTMLElement{
         this.top.appendChild(this.path);
         this.htmlBox.appendChild(this.content);
         this.bottom.appendChild(this.lastModified);
+        this.appendChild(this.top);
+        this.appendChild(this.htmlBox);
+        this.appendChild(this.bottom);
     }
 }
 

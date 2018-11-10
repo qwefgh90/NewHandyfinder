@@ -3,12 +3,13 @@
 // All of the Node.js APIs are available in this process.
 import "./styles/main.css"
 import "./ui/frame"
-import { AppFrame } from "./ui/frame";
+import { RendererController } from "./controller/rendererController";
+import { ProdAssembler } from "./assembler"
 
-const appName = "HandyFinder"
-
-function header() {
-
+function entryPoint(){
+    new ProdAssembler().assemble()
+    const controller = new RendererController();
+    document.body.appendChild(controller.getRoot());
 }
 
-document.body.appendChild(new AppFrame());
+entryPoint()

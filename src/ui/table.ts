@@ -4,6 +4,7 @@ import { Content } from "../model/content";
 import { AppContent } from "./content";
 import * as resource from "./resource";
 import { Subject } from "rxjs";
+import "./table.css"
 
 /**
  * title
@@ -28,8 +29,10 @@ export class AppTable extends HTMLElement {
         this.updateUI();
     }
 
-    public update(contentArr: Array<Content>){
-        this.arr = contentArr;
+    public update(contentArr: Array<Content> = null){
+        if(contentArr != null){
+            this.arr = contentArr;
+        }
         this.updateUI();
     }
 
@@ -47,9 +50,9 @@ export class AppTable extends HTMLElement {
         if(this.arr.length == 0){
             this.appendChild(this.noContent());
         }else{
-            this.childNodes.forEach((node, k, p) =>{
-                node.remove();
-            });
+            while(this.childNodes.length != 0){
+                this.childNodes[0].remove();
+            }
             this.arr.forEach((v, i, arr) => {
                 this.appendChild(new AppContent(v));
             })

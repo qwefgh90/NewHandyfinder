@@ -1,0 +1,9 @@
+my-content + my-content {
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    border-top: 0.01em solid rgb(164, 168, 159);
+}
+
+my-content {
+    display: block;
+}

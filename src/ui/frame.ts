@@ -4,6 +4,7 @@ import { getContainer, getRow } from "./bootHelper";
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Locator } from '../service/all'
 import { Subject } from 'rxjs'
+import * as Cog from "open-iconic/png/cog-2x.png"
 
 const version = "0.1";
 /**
@@ -24,11 +25,9 @@ export class AppFrame extends HTMLElement {
         super();
         this.container.classList.add("app-frame")
         this.appTop.classList.add("row");
-        this.appBody.classList.add("row");
-        this.appBody.style.marginTop = '2em';
-        this.appBody.classList.add("corner-box");
         this.appBottom.classList.add("row");
         this.build();
+
     }
 
     build(){
@@ -69,7 +68,9 @@ export class AppTopMenu extends HTMLElement {
     public readonly input = document.createElement("input");
     public readonly appendedDiv = document.createElement("div")
     public readonly searchBtnInGrp = document.createElement("button");
+    public readonly configureBtnInGrp = document.createElement("button");
     public readonly keywordSubject = new Subject<string>();
+    public readonly configureBtnSubject = new Subject<void>();
     constructor() {
         super();
         this.classList.add("input-group");
@@ -84,6 +85,16 @@ export class AppTopMenu extends HTMLElement {
         this.searchBtnInGrp.type = "button"
         this.searchBtnInGrp.innerText = "검색"
         
+        this.configureBtnInGrp.classList.add("btn", "btn-outline-secondary");
+        this.configureBtnInGrp.type = "button"
+        const image = new Image();
+        image.style.marginBottom = "4px";
+        console.log(Cog)
+        if (typeof Cog === 'string') {
+            image.src = Cog;
+        }
+        this.configureBtnInGrp.appendChild(image);
+        
         this.rxjs();
         this.build();
     }
@@ -93,10 +104,14 @@ export class AppTopMenu extends HTMLElement {
             if(this.input.value.length > 0)
                 this.keywordSubject.next(this.input.value);
         };
+        this.configureBtnInGrp.onclick = (ev) => {
+            this.configureBtnSubject.next();
+        }
     }
 
     build(){
         this.appendedDiv.appendChild(this.searchBtnInGrp);
+        this.appendedDiv.appendChild(this.configureBtnInGrp);
         this.appendChild(this.input);
         this.appendChild(this.appendedDiv);
     }

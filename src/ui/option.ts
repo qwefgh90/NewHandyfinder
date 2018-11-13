@@ -1,12 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import * as model from '../model/dir'
 import { Dir } from './dir'
-
+import * as Plus from "open-iconic/png/plus-2x.png"
+import { Subject } from "rxjs";
+import { remote } from 'electron';
 
 export class OptionFrame extends HTMLElement{
     private dirArr = new Array<model.Dir>();
     
     public readonly dirList = document.createElement('ul');
+    public readonly plusDiv = document.createElement('div');
+    public readonly addDirSubject = new Subject<string>();
     
     private dirItemClone = document.createElement('li');
     constructor(){
@@ -14,19 +18,22 @@ export class OptionFrame extends HTMLElement{
         this.classList.add("container-fluid")
         this.dirList.classList.add('list-group')
         this.dirItemClone.classList.add('list-group-item')
+        this.rxjs();
         this.build();
+    }
+
+    private rxjs(){
+        this.plusDiv.onclick = (ev) => {
+            let selected: string[] = remote.dialog.showOpenDialog({properties: ['openDirectory', 'multiSelections']});
+            selected.forEach((v,i,arr) =>{
+                this.addDirSubject.next(v);
+            });
+        }
     }
 
     private build(){
         this.appendChild(this.dirList);
         this.update();
-    }
-
-    public update(arr: Array<model.Dir> = null){
-        if(arr != null){
-            this.dirArr = arr;
-        }
-        this.updateUI();
     }
 
     private updateUI() {
@@ -39,7 +46,9 @@ export class OptionFrame extends HTMLElement{
             this.dirList.appendChild(item);
         });
 
-        var item = this.dirItemClone.cloneNode(false);
+        const item = <HTMLLIElement>this.dirItemClone.cloneNode(false);
+        item.classList.add('list-group-item-action')
+        item.style.cursor = "pointer";
         item.appendChild(this.plus());
         this.dirList.appendChild(item);
     }
@@ -48,12 +57,21 @@ export class OptionFrame extends HTMLElement{
      * A Element notify adding directory.
      */
     private plus(): HTMLElement{
-        const div = document.createElement('div');
-        div.style.textAlign = "center";
+        this.plusDiv.style.textAlign = "center";
+        const image = document.createElement('img');
+        if(typeof Plus ==='string')
+            image.src = Plus;
         const span = document.createElement('span');
         span.innerText = "+"
-        div.appendChild(span);
-        return div;
+        this.plusDiv.appendChild(image);
+        return this.plusDiv;
+    }
+
+    public update(arr: Array<model.Dir> = null){
+        if(arr != null){
+            this.dirArr = arr;
+        }
+        this.updateUI();
     }
 }
 

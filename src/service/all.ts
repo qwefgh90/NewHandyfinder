@@ -1,4 +1,6 @@
 export * from './searchService'
+export * from './dirListService'
+export * from './configFileService'
 export * from './assembler'
 export * from './locator'
 export * from './keywordSubject'

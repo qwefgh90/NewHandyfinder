@@ -4,6 +4,6 @@ import { ContentEchoSearchService } from './service/searchService'
 export class ServiceTestAssembler implements Assembler{
     public assemble(){
         const contentEchoSearchService = new ContentEchoSearchService()
-        Locator.locator().initialize(contentEchoSearchService);
+        Locator.locator().initialize(contentEchoSearchService, null, null);
     }
 }

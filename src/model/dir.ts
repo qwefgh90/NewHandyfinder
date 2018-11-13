@@ -1,3 +1,5 @@
 export class Dir{
-    path: string
+    constructor(readonly path: string){
+        
+    }
 }

@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
+import { ProdAssembler } from "./assembler";
 
+new ProdAssembler().assemble()
 let mainWindow: Electron.BrowserWindow;
 
 function createWindow() {

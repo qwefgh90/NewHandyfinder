@@ -7,7 +7,6 @@ import { RendererController } from "./controller/rendererController";
 import { ProdAssembler } from "./assembler"
 
 function entryPoint(){
-    new ProdAssembler().assemble()
     const controller = new RendererController();
     document.body.appendChild(controller.getRoot());
 }

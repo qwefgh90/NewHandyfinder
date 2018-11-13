@@ -48,7 +48,8 @@ describe('Locator', function () {
       }
     
       beforeEach(function () {
-        Assembler.assemble(new ContentEchoSearchService());
+        new ServiceTestAssembler().assemble();
+        //Assembler.assemble(new ContentEchoSearchService(), null, null);
         createTemp();
       })
     
